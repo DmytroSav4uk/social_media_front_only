@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:3030/api';
 const photoUrl ='http://localhost:3030/api/profile/download/'
 
-const webSocket = "ws://localhost:3030"
+const webSocket = "ws://localhost:3031"
 
 
 
