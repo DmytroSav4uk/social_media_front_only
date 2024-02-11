@@ -1,0 +1,117 @@
+<div class="container" [ngClass]="{'flex':router.isRestrictedRoute()}" x-data="{ rightSide: false, leftSide: false }">
+  <div *ngIf="!router.isRestrictedRoute()" class="left-side" [ngClass]="{'active':leftSide}">
+    <div class="left-side-button" (click)="toggleLeftSide()">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+           stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+           viewBox="0 0 24 24">
+        <path d="M19 12H5M12 19l-7-7 7-7"></path>
+      </svg>
+    </div>
+    <div style="cursor: pointer" (click)="navigateToMain()" class="logo">βίος</div>
+    <div class="side-wrapper">
+      <div class="side-title">MENU</div>
+      <div class="side-menu">
+        <a href="/main">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+            <path d="M9 22V12h6v10"></path>
+          </svg>
+          Home
+        </a>
+        <a href="/chatslist">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Private Chats
+        </a>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+  <ng-container *ngIf="friends && user">
+    <button class="right-side-button" (click)="toggleRightSide()">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+           stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </button>
+    <div *ngIf="!router.isRestrictedRoute()" class="right-side" [ngClass]="{'active':rightSide}">
+      <div class="account">
+
+      <span class="account-user">{{ user.name }} {{ user.surname }}
+        <img [src]="imagePath + user.photoUrl" alt="" class="account-profile">
+      </span>
+      </div>
+      <div  class="side-wrapper stories">
+        <div class="side-title">Friend Requests</div>
+
+        <ng-container *ngIf="pending?.users.length >0">
+          <div class="user">
+          </div>
+          <ng-container *ngFor="let user of pending.users">
+            <div class="user">
+              <img [src]="imagePath + user.profile.photoUrl" alt="" class="user-img">
+              <div class="username">{{ user.profile.name }} {{ user.profile.surname }}
+                <div class="album-date">
+                  <button (click)="acceptFriend(user.id)">accept</button>
+                  <button (click)="denyFriend(user.id)">deny</button>
+                </div>
+              </div>
+            </div>
+
+
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="pending?.users.length ===0">
+          <p>No friends requests</p>
+        </ng-container>
+      </div>
+      <div class="side-wrapper contacts">
+        <div class="side-title">Friends</div>
+        <ng-container *ngIf="friends.users.length > 0">
+          <div class="side-wrapper contacts">
+            <ng-container *ngIf="searchText; else allFriendsContainer">
+              <ng-container *ngFor="let friend of filteredFriends">
+                <div (click)="visitUser(friend.id)" class="user">
+                  <img [src]="imagePath + friend.profile.photoUrl" class="user-img">
+                  <div class="username">{{ friend.profile.name }} {{ friend.profile.surname }}
+                    <div class="user-status"></div>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+
+            <ng-template #allFriendsContainer>
+              <ng-container *ngFor="let friend of friends.users | friendfilter: searchText">
+                <div (click)="visitUser(friend.id)" class="user">
+
+                  <img [src]="imagePath + friend.profile.photoUrl" class="user-img">
+                  <div class="username">{{ friend.profile.name }} {{ friend.profile.surname }}
+                    <div class="user-status"></div>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-template>
+
+            <div class="search-bar right-search">
+              <input type="text" placeholder="Search" [(ngModel)]="searchText">
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="friends.users.length === 0">
+          <p>No friends yet...<br>Time to find some!</p>
+        </ng-container>
+      </div>
+    </div>
+    <div class="overlay" (click)="closeSides()" [class.active]="rightSide || leftSide"></div>
+  </ng-container>
+</div>

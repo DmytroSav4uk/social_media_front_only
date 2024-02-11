@@ -1,0 +1,78 @@
+<div style="position: fixed;width: 100%;z-index: 1">
+  <ng-container *ngFor="let message of messages.slice(0, 1)">
+    <ng-container *ngIf="message?.user?.email !== userEmail">
+      <h1 class="nick">
+        {{ message.user.profile.name }}
+      </h1>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ul class="chat-thread" #chatThread>
+  <ng-container *ngFor="let message of messages; let i = index; let last = last">
+    <li (contextmenu)="showContextMenu($event, message)"
+        [ngClass]="{'my': message?.user?.email === userEmail, 'notMy': message?.user?.email !== userEmail}">
+      <span *ngIf="showAvatar(message, i, last)">
+        <img (click)="visitProfile(message.user.id)" class="chat-avatar-icon"
+             [src]="imageUrl + message.user.profile.photoUrl">
+      </span>
+
+      <span *ngIf="message.photoFile">
+            <img class="chatImage" [src]="imageUrl + message.photoFile">
+      </span>
+
+      <span *ngIf="message.audioFile">
+      <audio [src]="imageUrl + message.audioFile" controls></audio>
+      </span>
+
+      <span [innerHTML]="processMessage(message?.message)"></span>
+      <span class="timestamp">{{reformatDate(message.sentTime)}}</span>
+    </li>
+  </ng-container>
+</ul>
+
+<div class="context-menu" *ngIf="contextMenuVisible" [style.left.px]="contextMenuPosition.left"
+     [style.top.px]="contextMenuPosition.top">
+  <div class="context-menu-item" (click)="deleteMessage()">
+    <p (click)="deleteMessage()">delete message</p>
+  </div>
+  <div class="context-menu-item" (click)="startEditMessage()">
+    <p (click)="startEditMessage()">edit message</p>
+  </div>
+</div>
+
+<form style="position: relative" [formGroup]="messageForm" (ngSubmit)="submitMessageForm()">
+  <input
+    #fileInput
+    [id]="'addImage'"
+    type="file"
+    (change)="onFileSelected($event)"
+    name="image"
+    accept="image/*"
+    required
+    style="display: none;"
+  />
+
+  <img class="addPictureIcon" (click)="fileInput.click()" src="./assets/PicturesPNG/Chat/addPicture.png">
+  <img (click)="startRecording()" class="recordIcon" src="./assets/PicturesPNG/Chat/record.png">
+
+  <ng-container *ngIf="showAudioMenu">
+    <span (click)="stopRecording()" >Stop Recording</span>
+    <audio #audioPlayer controls></audio>
+    <span (click)="sendAudio()">send audio</span>
+    <span (click)="cancelAudio()">cancel audio</span>
+  </ng-container>
+
+  <ng-container *ngIf="!showAudioMenu">
+    <textarea id="message" (keydown)="handleKeyDown($event)" formControlName="message"></textarea>
+    <button [disabled]="messageForm.invalid" type="submit">SEND</button>
+    <button *ngIf="editingMessage" (click)="cancelEdit()" type="submit">CANCEL EDIT</button>
+  </ng-container>
+
+
+</form>
+
+
+
+
+

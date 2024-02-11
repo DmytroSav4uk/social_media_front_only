@@ -1,0 +1,67 @@
+
+:host {
+  overflow: auto;
+  width: 100%;
+}
+
+
+/* Style the label */
+.custom-file-upload {
+
+  width: 50px;
+  height: 50px;
+
+  display: inline-block;
+
+  cursor: pointer;
+  background-color: #1b86f9; /* Blue background */
+  color: #fff; /* White text */
+  border-radius: 100px; /* Make it rounded */
+  font-weight: bold;
+  text-align: center;
+  transition: ease-in-out 0.2s;
+  border: none; /* Remove any border */
+}
+
+/* Change background color on hover */
+.custom-file-upload:hover {
+  /*background-color: #0056b3; !* Darker blue on hover *!*/
+
+
+  box-shadow: 0 0 20px #1b86f9;
+
+}
+
+/* Hide the actual input */
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+/* Optional: Style for the custom text span */
+.custom-file-upload span {
+  pointer-events: none; /* Make sure the span doesn't interfere with the label's click event */
+}
+
+
+.neon {
+
+}
+
+.comment {
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+
+.com{
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.comment span {
+  padding-top: 20px;
+  font-weight: 900;
+}

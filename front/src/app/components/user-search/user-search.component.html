@@ -1,0 +1,22 @@
+<input type="text" (focus)="isInputFocused=true" (blur)="handleBlur()" placeholder="Search"
+       [(ngModel)]="searchValue" (input)="search()">
+<ng-container *ngIf="searchUsers?.content.length > 0 && isInputFocused">
+  <div style="height: 300px;
+      overflow: hidden;
+      overflow-y: auto;
+  width: 300px;
+  position: absolute;
+  bottom: -300px;
+  background-color: #151728;
+  left: 20px;
+border-bottom-left-radius: 20px;border-bottom-right-radius: 20px">
+    <ng-container *ngFor="let user of searchUsers.content">
+      <div style="display: flex;padding: 20px">
+        <img (click)="visitUser(user.id)" style="cursor: pointer;border-radius: 50%;width: 50px;height: 50px"
+             [src]="imagePath + user.photoUrl">
+        <p (click)="visitUser(user.id)" class="searchP">{{user.nickname}}</p>
+      </div>
+
+    </ng-container>
+  </div>
+</ng-container>

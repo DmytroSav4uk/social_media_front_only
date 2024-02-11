@@ -1,0 +1,63 @@
+<ng-container *ngIf="userProfile">
+  <div class="father">
+
+    <h1 class="neon">Edit Profile</h1>
+    <hr style="border: 0.1px solid #272a3a;width: 100%"/>
+
+    <div class="image-container" (click)="fileInput.click()">
+      <img *ngIf="userProfile.photoUrl" style="width: 200px;height: 200px;border-radius: 100%" [src]="imagePath + userProfile.photoUrl">
+      <div class="overlay">
+        <p>Change Profile Photo</p>
+      </div>
+      <input
+        #fileInput
+        [id]="'userProfileInput-' + userProfile.name"
+        type="file"
+        (change)="onFileSelected($event,'profile')"
+        name="image"
+        accept="image/*"
+        required
+        style="display: none;"
+      />
+    </div>
+
+    <div class="neon-container" (click)="fileBackInput.click()">
+      <h1 class="neon">BackGround</h1>
+      <img *ngIf="userProfile.userBackgroundPhotoUrl" class="background-image" [src]="imagePath + userProfile.userBackgroundPhotoUrl" alt="Background Photo">
+      <div class="overlay background-overlay">
+        <p>Change Background Photo</p>
+      </div>
+      <input
+        #fileBackInput
+        [id]="'userBackgroundInput-' + userProfile.name"
+        type="file"
+        (change)="onFileSelected($event,'back')"
+        name="image"
+        accept="image/*"
+        required
+        style="display: none;"
+      />
+    </div>
+
+
+    <form class="form" [formGroup]="profileForm" (ngSubmit)="submit()">
+      <div class="input-group">
+        <input formControlName="name" placeholder="First Name"/>
+        <input formControlName="surname" placeholder="Last Name"/>
+      </div>
+      <div class="input-group">
+        <input formControlName="nickname" placeholder="Nickname"/>
+        <input formControlName="phone" placeholder="Phone"/>
+      </div>
+      <div class="input-group">
+        <input formControlName="userJob" placeholder="Job"/>
+        <input formControlName="userCity" placeholder="City"/>
+      </div>
+      <button [disabled]="!profileForm.valid">Save Changes</button>
+    </form>
+
+
+
+  </div>
+</ng-container>
+

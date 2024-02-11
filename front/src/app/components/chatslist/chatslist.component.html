@@ -1,0 +1,26 @@
+
+
+
+<ng-container *ngIf="rooms">
+
+
+  <div style="display: flex;flex-wrap: wrap">
+    <ng-container *ngFor="let room of rooms">
+      <ng-container *ngFor="let user of room.users">
+        <ng-container *ngIf="user.email !== email">
+          <div class="chat-avatar">
+
+            <ng-container *ngIf="countUnread(room) > 0">
+              <span class="countUnread">{{countUnread(room)}}</span>
+            </ng-container>
+
+
+            <img (click)="chatWithUser(room.id)" style="cursor: pointer;width: 100px;height: 100px" class="user-img" [src]="imagePath + user.profile.photoUrl">
+            <p (click)="chatWithUser(room.id)" style="margin: 0;cursor: pointer"> {{user.profile.name}} {{user.profile.surname}}</p>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+
+</ng-container>

@@ -1,0 +1,91 @@
+<div class="container-a" id="container" #container>
+  <div class="a-form-container a-sign-up-container">
+    <form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()" action="#">
+      <h1 style="margin-bottom: 80px">Create Account</h1>
+
+      <input type="text" formControlName="name" placeholder="name" />
+      <input type="text" formControlName="surname" placeholder="surname" />
+      <input type="email" formControlName="email" placeholder="Email" />
+      <input type="password" formControlName="password" placeholder="Password" />
+      <p *ngIf="success">Registration successful!</p>
+      <button type="submit">Sign Up</button>
+
+
+      <div *ngIf="registerForm?.get('password')?.errors">
+        <p *ngIf="registerForm?.get('password')?.hasError('required')">Password is required.</p>
+        <p *ngIf="registerForm?.get('password')?.hasError('minlength')">Password must be at least 8 characters.</p>
+
+        <!-- Specific error messages for missing special symbol, uppercase letter, lowercase letter, and number -->
+        <p *ngIf="registerForm?.get('password')?.hasError('pattern') && registerForm?.get('password')?.value">
+          {{ getPasswordError() }}
+        </p>
+      </div>
+
+    </form>
+  </div>
+  <div class="a-form-container a-sign-in-container">
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()" action="#">
+      <h1 style="margin-bottom: 80px">Sign in</h1>
+
+      <input type="email" formControlName="email" placeholder="Email" />
+      <input type="password" formControlName="password" placeholder="Password" />
+      <a style="color: white" href="#">Forgot your password?</a>
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+  <div class="a-overlay-container">
+    <div class="a-overlay">
+      <div class="a-overlay-panel a-overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="a-ghost" (click)="onSignInClick()" id="signIn">Sign In</button>
+      </div>
+      <div class="a-overlay-panel a-overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="a-ghost" (click)="onSignUpClick()" id="signUp">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-phone">
+  <div [style.display]="signUpPhone ? 'flex' : 'none'" class="phone-register">
+    <form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()" action="#">
+      <h1 style="margin-bottom: 80px">Create Account</h1>
+
+      <input type="text" formControlName="name" placeholder="name" />
+      <input type="text" formControlName="surname" placeholder="surname" />
+      <input type="email" formControlName="email" placeholder="Email" />
+      <input type="password" formControlName="password" placeholder="Password" />
+      <p *ngIf="success">Registration successful!</p>
+      <button type="submit">Sign Up</button>
+      <p>Already registered? Sign In</p>
+    </form>
+    <button style="background: none" (click)="showSignIn()" >Sign In</button>
+    <div *ngIf="registerForm?.get('password')?.errors">
+      <p *ngIf="registerForm?.get('password')?.hasError('required')">Password is required.</p>
+      <p *ngIf="registerForm?.get('password')?.hasError('minlength')">Password must be at least 8 characters.</p>
+
+      <!-- Specific error messages for missing special symbol, uppercase letter, lowercase letter, and number -->
+      <p *ngIf="registerForm?.get('password')?.hasError('pattern') && registerForm?.get('password')?.value">
+        {{ getPasswordError() }}
+      </p>
+    </div>
+
+  </div>
+  <div [style.display]="signInPhone ? 'flex' : 'none'" class="phone-login">
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()" action="#">
+      <h1 style="margin-bottom: 80px">Sign in</h1>
+
+      <input type="email" formControlName="email" placeholder="Email" />
+      <input type="password" formControlName="password" placeholder="Password" />
+      <a style="color: white" href="#">Forgot your password?</a>
+      <button type="submit">Sign In</button>
+      <p>No account? Sign Up</p>
+    </form>
+    <button style="background: none" (click)="showSignUp()">Sign Up</button>
+
+  </div>
+</div>
