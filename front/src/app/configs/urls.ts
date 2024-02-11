@@ -1,7 +1,7 @@
-const baseUrl = 'http://localhost:3030/api';
-const photoUrl ='http://localhost:3030/api/profile/download/'
+const baseUrl = 'http://44.202.162.130:8080/api';
+const photoUrl ='http://44.202.162.130:8080/api/profile/download/'
 
-const webSocket = "ws://localhost:3031"
+const webSocket = "ws://44.202.162.130:8080"
 
 
 
