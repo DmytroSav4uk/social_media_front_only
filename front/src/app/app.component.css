@@ -1,0 +1,32 @@
+.accept-btn {
+  color: #FFF;
+  padding: 10px;
+  border-left: 5px solid #2EA62E !important;
+
+}
+
+
+.accept-btn, .deny-btn {
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  background: none;
+  width: 70px;
+  transition: ease-in-out 0.1s;
+}
+
+
+.deny-btn {
+  color: #FFF;
+  padding: 10px;
+  border-right: 5px solid #CB4949 !important;
+
+}
+
+.accept-btn:hover{
+  background: #2EA62E;
+}
+
+.deny-btn:hover {
+  background: #CB4949;
+}

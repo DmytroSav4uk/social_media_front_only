@@ -61,8 +61,8 @@
               <img [src]="imagePath + user.profile.photoUrl" alt="" class="user-img">
               <div class="username">{{ user.profile.name }} {{ user.profile.surname }}
                 <div class="album-date">
-                  <button (click)="acceptFriend(user.id)">accept</button>
-                  <button (click)="denyFriend(user.id)">deny</button>
+                  <button class="accept-btn" (click)="acceptFriend(user.id)">accept<br/> ✔</button>
+                  <button class="deny-btn" (click)="denyFriend(user.id)">deny<br/> ✖</button>
                 </div>
               </div>
             </div>

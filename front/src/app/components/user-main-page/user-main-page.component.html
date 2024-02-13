@@ -15,7 +15,6 @@
       <img [src]="imagePath + user.userBackgroundPhotoUrl" alt="" class="profile-cover">
       <div class="profile-menu">
         <a [ngClass]="{'active':showMain}" (click)="getMain()" class="profile-menu-link ">Main</a>
-        <a [ngClass]="{'active':showPhotos}" (click)="getPhotos()" class="profile-menu-link">Photos</a>
         <a (click)="goToEdit()" class="profile-menu-link">Edit Profile</a>
       </div>
     </div>

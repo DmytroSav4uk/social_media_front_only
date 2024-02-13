@@ -212,12 +212,35 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: ease-in-out 0.3s ;
   width: 100%;
 }
 
+
+
+.audioButton{
+  background-color: #0d0d1a;
+  color: #e6e6e6;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+  width: 100%;
+  text-align: center;
+}
+
+.audioButton:hover{
+  box-shadow: 1px 1px 1px 1px white;
+}
+
+.audioButtons{
+  display: flex;
+  gap: 10px;
+}
+
 button:hover {
-  background-color: #1a1a2e;
+  box-shadow: 1px 1px 1px 1px white;
 }
 
 .context-menu{
@@ -228,7 +251,6 @@ button:hover {
   cursor: pointer;
   color: white;
 }
-
 
 .addPictureIcon{
   cursor: pointer;
@@ -246,13 +268,11 @@ button:hover {
   width: 70px;
 }
 
-
 .chatImage{
   max-width: 300px;
   object-fit: cover;
   border-radius: 10px;
 }
-
 
 @media screen and (max-width: 600px) {
   form{

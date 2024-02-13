@@ -15,7 +15,7 @@
             </ng-container>
 
 
-            <img (click)="chatWithUser(room.id)" style="cursor: pointer;width: 100px;height: 100px" class="user-img" [src]="imagePath + user.profile.photoUrl">
+            <img (click)="chatWithUser(room.id)" style="cursor: pointer;width: 100px;height: 100px;margin: 0;" class="user-img" [src]="imagePath + user.profile.photoUrl">
             <p (click)="chatWithUser(room.id)" style="margin: 0;cursor: pointer"> {{user.profile.name}} {{user.profile.surname}}</p>
           </div>
         </ng-container>

@@ -57,10 +57,19 @@
   <img (click)="startRecording()" class="recordIcon" src="./assets/PicturesPNG/Chat/record.png">
 
   <ng-container *ngIf="showAudioMenu">
-    <span (click)="stopRecording()" >Stop Recording</span>
-    <audio #audioPlayer controls></audio>
-    <span (click)="sendAudio()">send audio</span>
-    <span (click)="cancelAudio()">cancel audio</span>
+
+    <div>
+      <span *ngIf="isRecording">Recording now...</span>
+    </div>
+
+
+    <audio style="margin-top: 10px;width: 100%" #audioPlayer controls></audio>
+    <div class="audioButtons">
+      <span class="audioButton" (click)="stopRecording()" >Stop recording</span>
+      <span class="audioButton" (click)="sendAudio()">Send audio</span>
+      <span class="audioButton" (click)="cancelAudio()">Cancel audio</span>
+    </div>
+
   </ng-container>
 
   <ng-container *ngIf="!showAudioMenu">

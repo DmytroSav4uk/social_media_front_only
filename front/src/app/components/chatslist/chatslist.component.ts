@@ -47,7 +47,7 @@ export class ChatslistComponent implements OnInit {
   countUnread(room: any) {
     let count = 0;
     for (const message of room.messages) {
-      if (!message.read) {
+      if (!message.read && this.email !== message.user.email) {
         count += 1
       }
     }

@@ -519,7 +519,6 @@ body {
 .user {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
 .user + .user {
@@ -568,15 +567,14 @@ body {
   padding-left: 10px;margin: 0;background-color: #1e2031;
 }
 
-
 .my .chat-avatar-icon{
   display: none;
 }
 
-
 .username {
   font-size: 15px;
   font-family: "DM Sans", sans-serif;
+  text-align: center;
 }
 
 .status-menu {
@@ -843,6 +841,7 @@ body {
 
 .stories .album-date {
   font-family: "Source Sans Pro", sans-serif;
+  display: flex;
 }
 
 .user-status {
