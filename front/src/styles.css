@@ -6,6 +6,12 @@ body {
   margin: 0;
 }
 
+.logo img{
+  position: relative;
+  right: 2px;
+  top: 1px;
+}
+
 * {
   outline: none;
   box-sizing: border-box;
@@ -83,9 +89,28 @@ body {
     transform: rotate(180deg);
     transform-origin: bottom;
     display: flex;
+    gap: 7px;
     align-items: center;
+    justify-content: center;
     margin-top: -10px;
+
   }
+
+  .left-side:not(.active) .logo img {
+
+    position: relative;
+    top: -6px;
+    left: 4px;
+    transform: rotate(90deg);
+
+
+
+
+
+
+  }
+
+
 }
 
 .right-side {
